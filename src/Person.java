@@ -1,8 +1,9 @@
 import java.io.IOException;
 import java.util.Scanner;
 
-// I know that I double checked the name input. But first I checked the input. I also checked for validation in Person Constructor because some Person class
-// instances can be created anywhere else in the program during a more complex project.
+// I know that I "double checked" the name input. But first I checked the input in main in order to know that a valid input is "sent" to Person Class.
+// I also checked for validation in Person Constructor because some Person class instances can be created anywhere else in the program during a more
+// complex project.
 
 
 public class Person {
@@ -32,7 +33,7 @@ public class Person {
         else {
             this.name=name;
         }
-        if (age>0) { // here I didnt check if age is a Integer because from the parameters list I already know that variable AGE is already an int.
+        if (age>=0) { // here I didnt check if age is a Integer because from the parameters list I already know that variable AGE is already an int.
             this.age=age;
         }
         else {
@@ -101,11 +102,11 @@ public class Person {
                 }
                 System.out.println("Input Person's age:");
                 int age;
-                if (scanner.hasNextInt()){
-                    age=scanner.nextInt();
+                if (!scanner.hasNextInt()){
+                    throw new IOException("Age invalid. Please input a valid number");
                 }
                 else{
-                    throw new IOException("Please input a number");
+                    age=scanner.nextInt();
                 }
                 Person p = new Person(name, age);
                 if (p.isMajor()) {
