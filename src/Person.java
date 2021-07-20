@@ -70,7 +70,7 @@ public class Person {
 
     //main method
 
-    /*example of input: Mihai 21
+    /*example of input: Mihai 21 // after "Mihai" is inputed press ENTER button
              ->  output: name:Mihai age:21 is a major person
 
                  input: Alex -2
@@ -88,12 +88,21 @@ public class Person {
             try {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Input Person's name:");
-                String name = scanner.nextLine();
-                if (name.equals("exit")){
+                String name= scanner.nextLine();
+                if (!name.matches("[a-zA-Z]+")) { // here I checked using regex that the name does not contain any digits or special characters
+                    throw new IOException("Please input a valid name without special characters or digits");
+                }
+                else if (name.equals("exit")){
                     break;
                 }
                 System.out.println("Input Person's age:");
-                int age = scanner.nextInt();
+                int age;
+                if (scanner.hasNextInt()){
+                    age=scanner.nextInt();
+                }
+                else{
+                    throw new IOException("Please input a number");
+                }
                 Person p = new Person(name, age);
                 if (p.isMajor()) {
                     System.out.println(p + " is a major person");
