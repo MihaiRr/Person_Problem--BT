@@ -1,6 +1,10 @@
 import java.io.IOException;
 import java.util.Scanner;
 
+// I know that I double checked the name input. But first I checked the input. I also checked for validation in Person Constructor because some Person class
+// instances can be created anywhere else in the program during a more complex project.
+
+
 public class Person {
     private String name;
     private int age;
@@ -22,13 +26,13 @@ public class Person {
     and if the exceptions would be thrown in main or somewhere else the parameters won't be checked
     */
     public Person (String name, int age) throws IOException{
-        if (name.isEmpty()){
+        if (!name.matches("[a-zA-Z]+")){
             throw new IOException("name can't be empty. Please re-input the name");
         }
         else {
             this.name=name;
         }
-        if (age>0) {
+        if (age>0) { // here I didnt check if age is a Integer because from the parameters list I already know that variable AGE is already an int.
             this.age=age;
         }
         else {
